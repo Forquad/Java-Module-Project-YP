@@ -1,17 +1,17 @@
 public class CorrectRub {
-    static String getFormatRub(int number) {
+    static String getFormatRub() {
 
-        String correctRub = "рубл";
-        if (number >= 11 && number <= 14) {
-            correctRub = correctRub + "ей";
+        double personalCost = Main.sum/Main.quantity;
+        String correctRub = "";
+        if ((Math.floor(personalCost)%100) >= 11 && (Math.floor(personalCost)%100) <= 14) {
+            correctRub = "рублей";
         } else {
-            number %= 10;
-            if (number == 1) {
-                correctRub = correctRub + "ь";
-            } else if (number >= 2 && number <= 4) {
-                correctRub = correctRub + "я";
+            if ((Math.floor(personalCost) % 10) == 1) {
+                correctRub = "рубль";
+            } else if ((Math.floor(personalCost) % 10) > 1 && (Math.floor(personalCost) % 10) < 5) {
+                correctRub = "рубля";
             } else {
-                correctRub = correctRub + "ей";
+                correctRub = "рублей";
             }
         }
         return correctRub;

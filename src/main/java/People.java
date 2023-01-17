@@ -4,16 +4,15 @@ public class People {
     static Scanner scanner = new Scanner(System.in);
 
     public static int howMuchPeople() {
-        int quantity; //переменная в которой хранится количество человек
         System.out.println("Сколько Вас, ребят?");
         while (true) {
             if (scanner.hasNextInt()) {
-                quantity = scanner.nextInt();
-                if (quantity == 1) {
+                Main.quantity = scanner.nextInt();
+                if (Main.quantity == 1) {
                     System.out.println("Ты что, дурак? Ты ешь один...Попробуй еще раз...");
-                } else if (quantity < 1) {
+                } else if (Main.quantity < 1) {
                     System.out.println("Серьезно? Ты пересмотрелл Рикк и Морти? Богатый внутренний мир... попробуй еще раз...");
-                } else if (quantity > 1){
+                } else if (Main.quantity > 1){
                     break;
                 }
             } else {
@@ -21,6 +20,6 @@ public class People {
                 scanner.next();
             }
         }
-        return quantity;
+        return Main.quantity;
     }
 }

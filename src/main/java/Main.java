@@ -5,16 +5,19 @@ public class Main {
     static String items = "";
     static double sum = 0;
 
+    static int quantity=0;
+
     public static void main(String[] args) {
 
         int numberOfPeople = People.howMuchPeople();
         whatInBill();
-        double personalCost = sum / numberOfPeople;
-        String rub = CorrectRub.getFormatRub((int) personalCost);
-        printResult(personalCost, rub);
+        double personalCost = sum/numberOfPeople;
+        String rub = CorrectRub.getFormatRub();
+        printResult (personalCost, rub);
     }
 
     public static void whatInBill() {
+        StringBuilder builder = new StringBuilder();
         System.out.println("Ну, и что ели?");
         while (true) {
             String input = scanner.nextLine();
@@ -22,17 +25,16 @@ public class Main {
                 System.out.println("Фух! Я надеюсь вы не лопните...");
                 break;
             }
-            items = items + input+"\n";
+            builder.append(items+input).append("\n");
             System.out.println("А сколько стоило?");
             double price;
             while (true) {
                 if (scanner.hasNextDouble()) {
                     price = scanner.nextDouble();
-                    sum = price + sum;//Считаем стоимость товаров
                     if (price < 0) {
                         System.out.println("Серьезно, покормили и денег дали? Давай еще раз...");
-
                     } else {
+                        sum = price + sum;//Считаем стоимость товаров
                         System.out.println("Товар добавлен, общая сумма: " + sum + " руб. Что еще добавить из блюд? Если ничего, напиши 'Завершить'");
                         break;
                     }
@@ -43,7 +45,9 @@ public class Main {
             }
             scanner.nextLine();
         }
+        items=builder.toString();
     }
+
 
     static void printResult(double personalCost, String rub) {
         System.out.println("Добавленные товары: ");
